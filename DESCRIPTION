@@ -1,9 +1,9 @@
 Package: SALURhelper
-Title: What the Package Does (One Line, Title Case)
+Title: Helper Functions for SALURBAL Climate Analyses
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+    person("Derek", "Weix", , "dpw48@drexel.edu", role = c("aut", "cre"))
+Description: This package provides helper functions analysis types commonly used by SALURBAL, including case time series, distributed lag nonlinear models, and conditional quasi-Poisson regression. This package also includes basic functions for accessing data.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
