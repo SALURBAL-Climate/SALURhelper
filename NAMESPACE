@@ -2,3 +2,4 @@
 
 export(QAIC)
 export(QBIC)
+export(get_MMT)

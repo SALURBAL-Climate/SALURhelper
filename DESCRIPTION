@@ -1,6 +1,6 @@
 Package: SALURhelper
 Title: Helper Functions for SALURBAL Climate Analyses
-Version: 0.0.0.9000
+Version: 1.0.1
 Authors@R: 
     person("Derek", "Weix", , "dpw48@drexel.edu", role = c("aut", "cre"))
 Description: This package provides helper functions analysis types commonly used by SALURBAL, including case time series, distributed lag nonlinear models, and conditional quasi-Poisson regression.
