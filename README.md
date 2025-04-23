@@ -42,7 +42,7 @@ incorporate any feedback to make the package better.
 - If you have ideas for functions that you would like to add to
   `SALURhelper`, please file an
   [issue](https://github.com/SALURBAL-Climate/SALURhelper/issues).
-- If you encounter and bugs, or suspect the code is not functioning
+- If you encounter any bugs, or suspect the code is not functioning
   properly, please file an
   [issue](https://github.com/SALURBAL-Climate/SALURhelper/issues) with a
   [minimum reproducible

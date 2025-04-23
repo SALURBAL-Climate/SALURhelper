@@ -31,4 +31,4 @@ SALURhelper::QAIC(fit)
 This package is meant to serve SALURBAL researchers, and we want to incorporate any feedback to make the package better.
 
 - If you have ideas for functions that you would like to add to `SALURhelper`, please file an [issue](https://github.com/SALURBAL-Climate/SALURhelper/issues). 
-- If you encounter and bugs, or suspect the code is not functioning properly, please file an [issue](https://github.com/SALURBAL-Climate/SALURhelper/issues) with a [minimum reproducible example](https://stackoverflow.com/help/minimal-reproducible-example).
+- If you encounter any bugs, or suspect the code is not functioning properly, please file an [issue](https://github.com/SALURBAL-Climate/SALURhelper/issues) with a [minimum reproducible example](https://stackoverflow.com/help/minimal-reproducible-example).
