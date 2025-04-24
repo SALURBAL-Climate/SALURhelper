@@ -3,3 +3,5 @@
 export(QAIC)
 export(QBIC)
 export(get_MMT)
+export(get_cen)
+export(get_df_RRs)

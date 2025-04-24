@@ -40,3 +40,9 @@ get_MMT <- function(crosspred) {
     print("Unable to locate minimum.")
   }
 }
+
+#' @export
+
+get_cen <- function(crosspred) {
+  get_MMT(crosspred)
+}
