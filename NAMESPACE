@@ -2,6 +2,7 @@
 
 export(QAIC)
 export(QBIC)
+export(attrdl)
 export(get_MMT)
 export(get_cen)
 export(get_df_RRs)
