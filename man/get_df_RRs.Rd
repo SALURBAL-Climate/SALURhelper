@@ -4,17 +4,15 @@
 \alias{get_df_RRs}
 \title{Create a Dataframe from Reduced Predictions}
 \usage{
-get_df_RRs(pred, var_name = "Temperature")
+get_df_RRs(pred)
 }
 \arguments{
 \item{pred}{An object of class "\code{crossreduce}".}
-
-\item{var_name}{The name of the exposure variable of interest.}
 }
 \value{
 A tibble with with the following columns:
 \itemize{
-\item \code{Temperature}: The values of the predictor variable. Column name determined by the \code{var_name} argument.
+\item \code{exposure}: The values of the predictor variable.
 \item \code{RR}: The predicted risk, rate, or odds ratio from \code{crossreduce}.
 \item \code{RR_low}, \code{RR_high}: The lower/upper bound of the confidence bands for \code{RR}. Depends on the \code{ci.level} argument in \code{crossreduce}.
 \item \code{fit}: The predicted output from \code{crossreduce}.
@@ -28,8 +26,11 @@ object and, depending on the model link used in the prediction, will return valu
 associated with the RR or output.
 }
 \examples{
+
+library(dlnm)
+library(ggplot2)
 # The NYC airquality sample dataset
-help(airquality)
+head(airquality, 10)
 
 # Arguments to specify cross-basis
 arg_var <- list(fun = "ns", knots = quantile(airquality$Temp, c(.1, .75, .9)))
@@ -50,11 +51,11 @@ df_RR2 <- get_df_RRs(pred2)
 # Plots with ggplot2
 df_RR1 |>
   ggplot() +
-  geom_line(aes(Temperature, fit)) +
-  geom_ribbon(aes(Temperature, ymin = low, ymax = high), alpha = .2)
+  geom_line(aes(exposure, fit)) +
+  geom_ribbon(aes(exposure, ymin = low, ymax = high), alpha = .2)
 
 df_RR2 |>
   ggplot() +
-  geom_line(aes(Temperature, RR)) +
-  geom_ribbon(aes(Temperature, ymin = RR_low, ymax = RR_high), alpha = .2)
+  geom_line(aes(exposure, RR)) +
+  geom_ribbon(aes(exposure, ymin = RR_low, ymax = RR_high), alpha = .2)
 }
