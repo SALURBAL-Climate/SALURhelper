@@ -12,7 +12,6 @@
 #' and \eqn{n} is the number of observations.
 #'
 #' @references Gasparrini, A., B. Armstrong, and M. G. Kenward. “Distributed Lag Non‐linear Models.” *Statistics in Medicine* 29, no. 21 (2010): 2224–34. https://doi.org/10.1002/sim.3940.
-
 #'
 #' @rdname QAIC
 #'

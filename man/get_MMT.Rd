@@ -2,9 +2,12 @@
 % Please edit documentation in R/get_MMT.R
 \name{get_MMT}
 \alias{get_MMT}
+\alias{get_cen}
 \title{Get the MMT}
 \usage{
 get_MMT(crosspred)
+
+get_cen(crosspred)
 }
 \arguments{
 \item{crosspred}{An object of class "\code{crosspred}" or "\code{crossreduce}".}
@@ -20,8 +23,10 @@ of temperature, for which this function returns the minimum mortality temperatur
 (MMT).
 }
 \examples{
+
+library(dlnm)
 # The NYC airquality sample dataset
-help(airquality)
+head(airquality, 10)
 
 # Arguments to specify cross-basis
 arg_var <- list(fun = "ns", knots = quantile(airquality$Temp, c(.1, .75, .9)))

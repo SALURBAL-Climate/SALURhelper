@@ -9,11 +9,15 @@
 #' @param crosspred An object of class "`crosspred`" or "`crossreduce`".
 #'
 #' @returns The numeric value of the exposure corresponding to the minimum value of the response.
+#'
+#' @rdname get_MMT
 #' @export
 #'
 #' @examples
+#'
+#' library(dlnm)
 #' # The NYC airquality sample dataset
-#' help(airquality)
+#' head(airquality, 10)
 #'
 #' # Arguments to specify cross-basis
 #' arg_var <- list(fun = "ns", knots = quantile(airquality$Temp, c(.1, .75, .9)))
@@ -41,6 +45,7 @@ get_MMT <- function(crosspred) {
   }
 }
 
+#' @rdname get_MMT
 #' @export
 
 get_cen <- function(crosspred) {
