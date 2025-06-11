@@ -55,6 +55,9 @@ get_df_RRs <- function(pred) {
                  RR = pred$RRfit,
                  RR_low = pred$RRlow,
                  RR_high = pred$RRhigh,
+                 RR = pred$allRRfit,
+                 RR_low = pred$allRRlow,
+                 RR_high = pred$allRRhigh,
                  fit = pred$fit,
                  low = pred$low,
                  high = pred$high)
