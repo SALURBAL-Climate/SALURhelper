@@ -7,7 +7,7 @@
 get_df_RRs(pred)
 }
 \arguments{
-\item{pred}{An object of class "\code{crossreduce}".}
+\item{pred}{An object of class "\code{crossreduce}" or "\code{crosspred}".}
 }
 \value{
 A tibble with with the following columns:
@@ -22,8 +22,8 @@ A tibble with with the following columns:
 \description{
 This function extracts the predicted exposure response curve and its associated
 confidence bands from a DLNM prediction. This function accepts a \code{crossreduce}
-object and, depending on the model link used in the prediction, will return values
-associated with the RR or output.
+or \code{crosspred} object and, depending on the model link used in the prediction,
+will return values associated with the RR or output.
 }
 \examples{
 

@@ -2,10 +2,10 @@
 #'
 #' This function extracts the predicted exposure response curve and its associated
 #' confidence bands from a DLNM prediction. This function accepts a `crossreduce`
-#' object and, depending on the model link used in the prediction, will return values
-#' associated with the RR or output.
+#' or `crosspred` object and, depending on the model link used in the prediction,
+#' will return values associated with the RR or output.
 #'
-#' @param pred An object of class "`crossreduce`".
+#' @param pred An object of class "`crossreduce`" or "`crosspred`".
 #'
 #' @returns A tibble with with the following columns:
 #'  - `exposure`: The values of the predictor variable.
