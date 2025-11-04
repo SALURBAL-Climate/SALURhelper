@@ -16,6 +16,7 @@ A tibble with with the following columns:
 \item \code{RR}: The predicted risk, rate, or odds ratio from \code{crossreduce}.
 \item \code{RR_low}, \code{RR_high}: The lower/upper bound of the confidence bands for \code{RR}. Depends on the \code{ci.level} argument in \code{crossreduce}.
 \item \code{fit}: The predicted output from \code{crossreduce}.
+\item \code{se}" The associated standard error of \code{fit}.
 \item \code{low}, \code{high}: The lower/upper bound of the confidence bands for \code{fit}. Depends on the \code{ci.level} argument in \code{crossreduce}.
 }
 }

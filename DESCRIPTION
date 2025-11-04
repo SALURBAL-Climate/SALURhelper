@@ -1,6 +1,6 @@
 Package: SALURhelper
 Title: Helper Functions for SALURBAL Climate Analyses
-Version: 1.0.3
+Version: 1.0.4
 Authors@R: 
     person("Derek", "Weix", , "dpw48@drexel.edu", role = c("aut", "cre"))
 Description: This package provides helper functions analysis types commonly used 
@@ -9,7 +9,7 @@ Description: This package provides helper functions analysis types commonly used
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Imports: 
     dlnm,
     tsModel

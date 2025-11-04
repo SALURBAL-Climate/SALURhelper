@@ -12,6 +12,7 @@
 #'  - `RR`: The predicted risk, rate, or odds ratio from `crossreduce`.
 #'  - `RR_low`, `RR_high`: The lower/upper bound of the confidence bands for `RR`. Depends on the `ci.level` argument in `crossreduce`.
 #'  - `fit`: The predicted output from `crossreduce`.
+#'  - `se`" The associated standard error of `fit`.
 #'  - `low`, `high`: The lower/upper bound of the confidence bands for `fit`. Depends on the `ci.level` argument in `crossreduce`.
 #'
 #' @export
@@ -59,6 +60,7 @@ get_df_RRs <- function(pred) {
                  RR_low = pred$allRRlow,
                  RR_high = pred$allRRhigh,
                  fit = pred$fit,
+                 se  = pred$se,
                  low = pred$low,
                  high = pred$high)
 }
