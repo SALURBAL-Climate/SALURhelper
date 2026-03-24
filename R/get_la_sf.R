@@ -32,8 +32,3 @@ la_range_long <- function() c(-118.40136718784544, -34.805468749982765)
 #' @export
 
 la_range_lat <- function() c(-55.891699218544034, 32.715332031148364)
-
-#' @rdname get_ne_sf
-#' @export
-
-get_l1_sf <- sf::read_sf("data/SALURBAL_L1.shp")
