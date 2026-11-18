@@ -7,6 +7,7 @@
 #' (MMT).
 #'
 #' @param crosspred An object of class "`crosspred`" or "`crossreduce`".
+#' @param limits  A numeric vector of length two that sets the lower and upper limit returned.
 #'
 #' @returns The numeric value of the exposure corresponding to the minimum value of the response.
 #'
@@ -34,8 +35,8 @@
 #' # Prediction centering at the MMT
 #' pred_centered <- crosspred(cb, fit, cen = get_MMT(pred))
 #' plot(pred_centered, "overall")
+get_MMT <- function(crosspred, limits = NULL) {
 
-get_MMT <- function(crosspred) {
   if(!is.null(crosspred$fit)) {
     crosspred$predvar[which.min(crosspred$fit)]
   } else if(!is.null(crosspred$allfit)) {
