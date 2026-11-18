@@ -69,6 +69,6 @@ get_MMT <- function(crosspred, limits = NULL) {
 #' @rdname get_MMT
 #' @export
 
-get_cen <- function(crosspred) {
-  get_MMT(crosspred)
+get_cen <- function(crosspred, limits = NULL) {
+  get_MMT(crosspred, limits = limits)
 }
