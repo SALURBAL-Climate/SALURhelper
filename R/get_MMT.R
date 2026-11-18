@@ -45,8 +45,13 @@ get_MMT <- function(crosspred, limits = NULL) {
     return(print("Must submit object of class crosspred or crossreduce."))
   }
 
+  # Get limits for the predictor variable
+  if (is.null(limits)) {
+    limits <- c(-Inf, Inf)
+  } else if (is.numeric(limits) & length(limits) == 2) {
+    limits
   } else {
-    print("Unable to locate minimum.")
+    return(print("limits must be a numeric vector of length 2 or NULL"))
   }
 }
 
