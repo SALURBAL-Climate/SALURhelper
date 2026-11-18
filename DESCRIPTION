@@ -16,6 +16,6 @@ Imports:
     dplyr,
     tibble,
     tsModel
-Suggests: 
-    ggplot2,
+Suggests:
+    ggplot2
 Config/roxygen2/version: 8.1.0
