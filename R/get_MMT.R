@@ -36,11 +36,15 @@
 #' pred_centered <- crosspred(cb, fit, cen = get_MMT(pred))
 #' plot(pred_centered, "overall")
 get_MMT <- function(crosspred, limits = NULL) {
+  # Confirm crosspred is of correct object type and extract the fitted values
+  if (class(crosspred) == "crossreduce") {
+    fit <- crosspred$fit
+  } else if (class(crosspred) == "crosspred") {
+    fit <- crosspred$allfit
+  } else {
+    return(print("Must submit object of class crosspred or crossreduce."))
+  }
 
-  if(!is.null(crosspred$fit)) {
-    crosspred$predvar[which.min(crosspred$fit)]
-  } else if(!is.null(crosspred$allfit)) {
-    crosspred$predvar[which.min(crosspred$allfit)]
   } else {
     print("Unable to locate minimum.")
   }
