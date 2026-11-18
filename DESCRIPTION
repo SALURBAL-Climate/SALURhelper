@@ -9,10 +9,13 @@ Description: This package provides helper functions analysis types commonly used
 License: MIT
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
+Depends:
+    R (>= 4.1.0)
 Imports: 
     dlnm (>= 2.4.10),
+    dplyr (>= 1.1.4),
+    tibble (>= 3.0.0),
     tsModel
-Suggests: 
-    ggplot2 (>= 4.0.0),
-    tibble (>= 3.0.0)
+Suggests:
+    ggplot2 (>= 4.0.0)
 Config/roxygen2/version: 8.1.0
