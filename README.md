@@ -12,7 +12,7 @@ functions used in such research.
 ## Installation
 
 ``` r
-devtools::install_github("SALURBAL-Climate/SALURhelper")
+pak::pak("SALURBAL-Climate/SALURhelper")
 library(SALURhelper)
 ```
 
