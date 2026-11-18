@@ -61,6 +61,9 @@ get_MMT <- function(crosspred, limits = NULL) {
       fit = fit
     ) |>
     dplyr::filter(dplyr::between(predvar, limits[1], limits[2]))
+
+  # Return the value of the predictor corresponding to the minimum prediction
+  df_pred$predvar[which.min(df_pred$fit)]
 }
 
 #' @rdname get_MMT
