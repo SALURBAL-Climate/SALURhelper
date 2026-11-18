@@ -53,6 +53,14 @@ get_MMT <- function(crosspred, limits = NULL) {
   } else {
     return(print("limits must be a numeric vector of length 2 or NULL"))
   }
+
+  # Create a new df of the predictor variable and associated response
+  df_pred <-
+    data.frame(
+      predvar = crosspred$predvar,
+      fit = fit
+    ) |>
+    dplyr::filter(dplyr::between(predvar, limits[1], limits[2]))
 }
 
 #' @rdname get_MMT
