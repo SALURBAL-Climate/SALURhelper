@@ -12,10 +12,10 @@ Roxygen: list(markdown = TRUE)
 Depends:
     R (>= 4.1.0)
 Imports: 
-    dlnm,
+    dlnm (>= 2.4.10),
     dplyr (>= 1.1.4),
-    tibble,
+    tibble (>= 3.0.0),
     tsModel
 Suggests:
-    ggplot2
+    ggplot2 (>= 4.0.0)
 Config/roxygen2/version: 8.1.0
