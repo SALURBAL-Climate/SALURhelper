@@ -32,9 +32,17 @@
 #' pred <- crosspred(cb, fit)
 #' plot(pred, "overall")
 #'
-#' # Prediction centering at the MMT
-#' pred_centered <- crosspred(cb, fit, cen = get_MMT(pred))
+#' # Prediction centered at the MMT
+#' pred_centered <- crosspred(cb, fit, cen = get_cen(pred))
 #' plot(pred_centered, "overall")
+#'
+#' # Determine lower and upper limits for the temperature range
+#' limits_temp <- quantile(airquality$Temp, c(.01, .99))
+#'
+#' # Prediction centering at the MMT, limited between the 1st and 99th temperature percentiles
+#' pred_centered <- crosspred(cb, fit, cen = get_cen(pred, limits = limits_temp))
+#' plot(pred_centered, "overall")
+
 get_MMT <- function(crosspred, limits = NULL) {
   # Confirm crosspred is of correct object type and extract the fitted values
   if (class(crosspred) == "crossreduce") {
