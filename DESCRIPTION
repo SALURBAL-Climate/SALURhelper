@@ -14,7 +14,8 @@ Depends:
     R (>= 4.1.0)
 Imports: 
     dlnm,
+    dplyr,
+    tibble,
     tsModel
 Suggests: 
     ggplot2,
-    tibble
