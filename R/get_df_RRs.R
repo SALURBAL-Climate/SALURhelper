@@ -52,17 +52,6 @@
 #'   geom_ribbon(aes(exposure, ymin = RR_low, ymax = RR_high), alpha = .2)
 
 get_df_RRs <- function(pred) {
-  tibble::tibble(exposure = pred$predvar,
-                 RR = pred$RRfit,
-                 RR_low = pred$RRlow,
-                 RR_high = pred$RRhigh,
-                 RR = pred$allRRfit,
-                 RR_low = pred$allRRlow,
-                 RR_high = pred$allRRhigh,
-                 fit = pred$fit,
-                 se  = pred$se,
-                 low = pred$low,
-                 high = pred$high)
 }
 
 
