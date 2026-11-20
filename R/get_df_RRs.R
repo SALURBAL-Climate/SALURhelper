@@ -116,4 +116,21 @@ get_df_lag_RRs <- function(pred) {
   # Names to extract from crosspred
   var_names <- paste0(var_mod1, var_mod2, base_names)
 
+  # Extract RR in matrix form for mean, lower, and upper bounds
+  list_df <- Map(
+    \(pred_mat, col_name) {
+      pred_mat |>
+        data.frame() |>
+        dplyr::mutate(exposure = pred$predvar, .before = "lag0") |>
+        tidyr::pivot_longer(
+          dplyr::contains("lag"),
+          values_to = col_name,
+          names_to = "lag"
+        ) |>
+        dplyr::mutate(lag = as.integer(sub("lag", "", lag)))
+    },
+    # Lists
+    list(pred[[var_names[1]]], pred[[var_names[2]]], pred[[var_names[3]]]),
+    list(col_names[1], col_names[2], col_names[3])
+  )
 }
