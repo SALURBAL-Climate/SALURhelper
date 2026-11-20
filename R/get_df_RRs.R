@@ -78,6 +78,14 @@ get_df_RRs <- function(pred) {
 
   # Names to extract from crosspred
   var_names <- paste0(var_mod1, var_mod2, base_names)
+
+  # Returned df
+  tibble::tibble(
+    exposure = pred[["predvar"]],
+    !!col_names[1] := pred[[var_names[1]]],
+    !!col_names[2] := pred[[var_names[2]]],
+    !!col_names[3] := pred[[var_names[3]]]
+  )
 }
 
 
