@@ -35,10 +35,12 @@
 #'
 #' # Prediction and extracted RRs (or output)
 #' pred1 <- crossreduce(cb, fit1)
-#' df_RR1 <- get_df_RRs(pred1)
+#' df_RR1 <- crosspred_to_df(pred1)
 #'
-#' pred2 <- crossreduce(cb, fit2)
-#' df_RR2 <- get_df_RRs(pred2)
+#' pred2 <- crosspred(cb, fit2)
+#' df_RR2 <- crosspred_to_df(pred2)
+#'
+#' df_RR3 <- crosspred_to_df(pred2, pred_type = "lagged")
 #'
 #' # Plots with ggplot2
 #' df_RR1 |>
@@ -50,6 +52,13 @@
 #'   ggplot() +
 #'   geom_line(aes(exposure, RR)) +
 #'   geom_ribbon(aes(exposure, ymin = RR_low, ymax = RR_high), alpha = .2)
+#'
+#' df_RR3 |>
+#'   ggplot() +
+#'   geom_line(aes(exposure, RR)) +
+#'   geom_ribbon(aes(exposure, ymin = RR_low, ymax = RR_high), alpha = .2) +
+#'   facet_wrap(~ lag, labeller = as_labeller(\(x) paste("Lag", x)))
+#'
 
 get_df_RRs <- function(pred) {
   # The base names of the variables to extract from pred
