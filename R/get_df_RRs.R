@@ -1,19 +1,19 @@
-#' Create a Dataframe from Reduced Predictions
+#' Create a Dataframe from DLNM Predictions
 #'
-#' This function extracts the predicted exposure response curve and its associated
-#' confidence bands from a DLNM prediction. This function accepts a `crossreduce`
-#' or `crosspred` object and, depending on the model link used in the prediction,
-#' will return values associated with the RR or output.
+#' These functions extract the predicted exposure response curve and its associated
+#' confidence bands from a DLNM prediction.
 #'
-#' @param pred An object of class "`crossreduce`" or "`crosspred`".
+#' The `get_df_RRs()` function accepts a `crossreduce` or `crosspred` object and will return the estimated means, lower bounds, and upper bounds for the supplied values of the predictor variable, cumulated across all lags.
+#' The `get_df_lag_RRs()` function accepts a `crosspred` object and returns the estimated matrix of means, lower bounds, and upper bounds for all predictor variable and lag combinations.
+#' The `crosspred_to_df()` function acts as an alias for `get_df_RRs()` when `pred_type == "cumulative"` or `get_df_lag_RRs()` when `pred_type == "lagged"`.
+#'
+#' @param pred An object of class "`crosspred`" or "`crossreduce`".
+#' @param pred_type A string, either "cumulative" or "lagged" specifying if the cumulated values or full matrix values should be returned.
 #'
 #' @returns A tibble with with the following columns:
 #'  - `exposure`: The values of the predictor variable.
-#'  - `RR`: The predicted risk, rate, or odds ratio from `crossreduce`.
-#'  - `RR_low`, `RR_high`: The lower/upper bound of the confidence bands for `RR`. Depends on the `ci.level` argument in `crossreduce`.
-#'  - `fit`: The predicted output from `crossreduce`.
-#'  - `se`" The associated standard error of `fit`.
-#'  - `low`, `high`: The lower/upper bound of the confidence bands for `fit`. Depends on the `ci.level` argument in `crossreduce`.
+#'  - `fit`, `RR`, `OR`: The predicted risk, rate, odds ratio or fitted value. Depends on the value of `model.link` argument in the `crosspred` or `crossreduce` object.
+#'  - `low`, `RR_low`, `OR_low`, `high`, `RR_high`, `OR_high`: The lower/upper bound of the confidence bands. Depends on the `ci.level` argument in the `crossreduce` object.
 #'
 #' @export
 #'
