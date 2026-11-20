@@ -50,7 +50,7 @@ get_MMT <- function(crosspred, limits = NULL) {
   } else if (class(crosspred) == "crosspred") {
     fit <- crosspred$allfit
   } else {
-    return(print("Must submit object of class crosspred or crossreduce."))
+    stop("Must submit object of class crosspred or crossreduce.")
   }
 
   # Get limits for the predictor variable
@@ -59,7 +59,7 @@ get_MMT <- function(crosspred, limits = NULL) {
   } else if (is.numeric(limits) & length(limits) == 2) {
     limits
   } else {
-    return(print("limits must be a numeric vector of length 2 or NULL"))
+    stop("limits must be a numeric vector of length 2 or NULL")
   }
 
   # Create a new df of the predictor variable and associated response
