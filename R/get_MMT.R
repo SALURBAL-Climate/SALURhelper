@@ -7,6 +7,7 @@
 #' (MMT).
 #'
 #' @param crosspred An object of class "`crosspred`" or "`crossreduce`".
+#' @param limits  A numeric vector of length two that sets the lower and upper limit returned.
 #'
 #' @returns The numeric value of the exposure corresponding to the minimum value of the response.
 #'
@@ -31,23 +32,56 @@
 #' pred <- crosspred(cb, fit)
 #' plot(pred, "overall")
 #'
-#' # Prediction centering at the MMT
-#' pred_centered <- crosspred(cb, fit, cen = get_MMT(pred))
+#' # Prediction centered at the MMT
+#' pred_centered <- crosspred(cb, fit, cen = get_cen(pred))
+#' plot(pred_centered, "overall")
+#'
+#' # Determine lower and upper limits for the temperature range
+#' limits_temp <- quantile(airquality$Temp, c(.01, .99))
+#'
+#' # Prediction centering at the MMT, limited between the 1st and 99th temperature percentiles
+#' pred_centered <- crosspred(cb, fit, cen = get_cen(pred, limits = limits_temp))
 #' plot(pred_centered, "overall")
 
-get_MMT <- function(crosspred) {
-  if(!is.null(crosspred$fit)) {
-    crosspred$predvar[which.min(crosspred$fit)]
-  } else if(!is.null(crosspred$allfit)) {
-    crosspred$predvar[which.min(crosspred$allfit)]
+get_MMT <- function(crosspred, limits = NULL) {
+  # Confirm crosspred is of correct object type and extract the fitted values
+  if (class(crosspred) == "crossreduce") {
+    fit <- crosspred$fit
+  } else if (class(crosspred) == "crosspred") {
+    fit <- crosspred$allfit
   } else {
-    print("Unable to locate minimum.")
+    stop("Must submit object of class crosspred or crossreduce.")
   }
+
+  # Get limits for the predictor variable
+  if (is.null(limits)) {
+    limits <- c(-Inf, Inf)
+  } else if (is.numeric(limits) & length(limits) == 2) {
+    limits
+  } else {
+    stop("limits must be a numeric vector of length 2 or NULL")
+  }
+
+  # Create a new df of the predictor variable and associated response
+  df_pred <-
+    data.frame(
+      predvar = crosspred$predvar,
+      fit = fit
+    ) |>
+    dplyr::filter(dplyr::between(predvar, limits[1], limits[2]))
+
+  # Checks if any values of predvar are between lower and upper limits
+  if (nrow(df_pred) < 1) {
+    stop("No values of predvar found between lower and upper limits")
+  }
+
+  # Return the value of the predictor corresponding to the minimum prediction
+  df_pred$predvar[which.min(df_pred$fit)]
 }
 
 #' @rdname get_MMT
 #' @export
 
-get_cen <- function(crosspred) {
-  get_MMT(crosspred)
+get_cen <- function(crosspred, limits = NULL) {
+  get_MMT(crosspred, limits = limits)
 }

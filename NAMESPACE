@@ -3,6 +3,8 @@
 export(QAIC)
 export(QBIC)
 export(attrdl)
+export(crosspred_to_df)
 export(get_MMT)
 export(get_cen)
 export(get_df_RRs)
+export(get_df_lag_RRs)
