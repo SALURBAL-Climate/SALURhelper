@@ -52,6 +52,8 @@
 #'   geom_ribbon(aes(exposure, ymin = RR_low, ymax = RR_high), alpha = .2)
 
 get_df_RRs <- function(pred) {
+  # The base names of the variables to extract from pred
+  base_names <- c("fit", "low", "high")
 }
 
 
