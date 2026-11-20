@@ -92,5 +92,28 @@ get_df_RRs <- function(pred) {
 #' @export
 
 get_df_lag_RRs <- function(pred) {
+  # The base names of the variables to extract from pred
+  base_names <- c("fit", "low", "high")
+
+  # Confirm crosspred is of correct object type and extract the fitted values
+  if (class(pred) != "crosspred") {
+    stop("Must submit object of class crosspred.")
+  }
+  var_mod1 <- "mat"
+
+  # Create returned col_names and modify var_Names by model.link
+  if (pred$model.link == "log") {
+    var_mod2 <- "RR"
+    col_names <- c("RR", "RR_low", "RR_high")
+  } else if (pred$model.link == "logit") {
+    var_mod2 <- "RR"
+    col_names <- c("OR", "OR_low", "OR_high")
+  } else {
+    var_mod2 <- ""
+    col_names <- c("fit", "low", "high")
+  }
+
+  # Names to extract from crosspred
+  var_names <- paste0(var_mod1, var_mod2, base_names)
 
 }
