@@ -133,4 +133,7 @@ get_df_lag_RRs <- function(pred) {
     list(pred[[var_names[1]]], pred[[var_names[2]]], pred[[var_names[3]]]),
     list(col_names[1], col_names[2], col_names[3])
   )
+
+  # Return single df of matrix of fitted, lower, and upper bounds
+  Reduce(\(x, y) dplyr::left_join(x, y, by = c("exposure", "lag")), list_df)
 }
