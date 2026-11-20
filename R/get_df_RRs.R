@@ -12,8 +12,8 @@
 #'
 #' @returns A tibble with with the following columns:
 #'  - `exposure`: The values of the predictor variable.
-#'  - `fit`, `RR`, `OR`: The predicted risk, rate, odds ratio or fitted value. Depends on the value of `model.link` argument in the `crosspred` or `crossreduce` object.
-#'  - `low`, `RR_low`, `OR_low`, `high`, `RR_high`, `OR_high`: The lower/upper bound of the confidence bands. Depends on the `ci.level` argument in the `crossreduce` object.
+#'  - `fit`, `RR`, `OR`: The predicted risk, rate, odds ratio or fitted value, depending on the value of `model.link` argument in the `crosspred` or `crossreduce` object.
+#'  - `low`, `RR_low`, `OR_low`, `high`, `RR_high`, `OR_high`: The lower/upper bound of the confidence bands. The level of confidence can be adjust with the `ci.level` argument when executing `crosspred` or `crossreduce`.
 #'
 #' @export
 #'
