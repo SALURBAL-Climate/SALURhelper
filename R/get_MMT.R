@@ -70,6 +70,11 @@ get_MMT <- function(crosspred, limits = NULL) {
     ) |>
     dplyr::filter(dplyr::between(predvar, limits[1], limits[2]))
 
+  # Checks if any values of predvar are between lower and upper limits
+  if (nrow(df_pred) < 1) {
+    stop("No values of predvar found between lower and upper limits")
+  }
+
   # Return the value of the predictor corresponding to the minimum prediction
   df_pred$predvar[which.min(df_pred$fit)]
 }
