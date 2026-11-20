@@ -137,3 +137,16 @@ get_df_lag_RRs <- function(pred) {
   # Return single df of matrix of fitted, lower, and upper bounds
   Reduce(\(x, y) dplyr::left_join(x, y, by = c("exposure", "lag")), list_df)
 }
+
+#' @rdname get_df_RRs
+#' @export
+
+crosspred_to_df <- function(pred, pred_type = "cumulative") {
+  if (pred_type == "cumulative") {
+    get_df_RRs(pred)
+  } else if (pred_type == "lagged") {
+    get_df_lag_RRs(pred)
+  } else {
+    stop('pred_type must be either "cumulative" or "lagged"')
+  }
+}
