@@ -2,9 +2,12 @@
 % Please edit documentation in R/get_df_RRs.R
 \name{get_df_RRs}
 \alias{get_df_RRs}
+\alias{get_df_lag_RRs}
 \title{Create a Dataframe from Reduced Predictions}
 \usage{
 get_df_RRs(pred)
+
+get_df_lag_RRs(pred)
 }
 \arguments{
 \item{pred}{An object of class "\code{crossreduce}" or "\code{crosspred}".}
