@@ -88,4 +88,9 @@ get_df_RRs <- function(pred) {
   )
 }
 
+#' @rdname get_df_RRs
+#' @export
 
+get_df_lag_RRs <- function(pred) {
+
+}
