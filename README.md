@@ -11,6 +11,8 @@ functions used in such research.
 
 ## Installation
 
+In order to install this package, you must download [Rtools](https://cran.r-project.org/bin/windows/Rtools/rtools44/rtools.html) and have the `pak` package installed.
+
 ``` r
 pak::pak("SALURBAL-Climate/SALURhelper")
 library(SALURhelper)
