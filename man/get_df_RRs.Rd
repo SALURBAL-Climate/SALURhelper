@@ -2,29 +2,37 @@
 % Please edit documentation in R/get_df_RRs.R
 \name{get_df_RRs}
 \alias{get_df_RRs}
-\title{Create a Dataframe from Reduced Predictions}
+\alias{get_df_lag_RRs}
+\alias{crosspred_to_df}
+\title{Create a Dataframe from DLNM Predictions}
 \usage{
 get_df_RRs(pred)
+
+get_df_lag_RRs(pred)
+
+crosspred_to_df(pred, pred_type = "cumulative")
 }
 \arguments{
-\item{pred}{An object of class "\code{crossreduce}" or "\code{crosspred}".}
+\item{pred}{An object of class "\code{crosspred}" or "\code{crossreduce}".}
+
+\item{pred_type}{A string, either "cumulative" or "lagged" specifying if the cumulated values or full matrix values should be returned.}
 }
 \value{
 A tibble with with the following columns:
 \itemize{
 \item \code{exposure}: The values of the predictor variable.
-\item \code{RR}: The predicted risk, rate, or odds ratio from \code{crossreduce}.
-\item \code{RR_low}, \code{RR_high}: The lower/upper bound of the confidence bands for \code{RR}. Depends on the \code{ci.level} argument in \code{crossreduce}.
-\item \code{fit}: The predicted output from \code{crossreduce}.
-\item \code{se}" The associated standard error of \code{fit}.
-\item \code{low}, \code{high}: The lower/upper bound of the confidence bands for \code{fit}. Depends on the \code{ci.level} argument in \code{crossreduce}.
+\item \code{fit}, \code{RR}, \code{OR}: The predicted risk, rate, odds ratio or fitted value, depending on the value of \code{model.link} argument in the \code{crosspred} or \code{crossreduce} object.
+\item \code{low}, \code{RR_low}, \code{OR_low}, \code{high}, \code{RR_high}, \code{OR_high}: The lower/upper bound of the confidence bands. The level of confidence can be adjust with the \code{ci.level} argument when executing \code{crosspred} or \code{crossreduce}.
 }
 }
 \description{
-This function extracts the predicted exposure response curve and its associated
-confidence bands from a DLNM prediction. This function accepts a \code{crossreduce}
-or \code{crosspred} object and, depending on the model link used in the prediction,
-will return values associated with the RR or output.
+These functions extract the predicted exposure response curve and its associated
+confidence bands from a DLNM prediction.
+}
+\details{
+The \code{get_df_RRs()} function accepts a \code{crossreduce} or \code{crosspred} object and will return the estimated means, lower bounds, and upper bounds for the supplied values of the predictor variable, cumulated across all lags.
+The \code{get_df_lag_RRs()} function accepts a \code{crosspred} object and returns the estimated matrix of means, lower bounds, and upper bounds for all predictor variable and lag combinations.
+The \code{crosspred_to_df()} function acts as an alias for \code{get_df_RRs()} when \code{pred_type == "cumulative"} or \code{get_df_lag_RRs()} when \code{pred_type == "lagged"}.
 }
 \examples{
 
@@ -44,10 +52,12 @@ fit2 <- glm(Ozone ~ cb, family = "quasipoisson", data = airquality)
 
 # Prediction and extracted RRs (or output)
 pred1 <- crossreduce(cb, fit1)
-df_RR1 <- get_df_RRs(pred1)
+df_RR1 <- crosspred_to_df(pred1)
 
-pred2 <- crossreduce(cb, fit2)
-df_RR2 <- get_df_RRs(pred2)
+pred2 <- crosspred(cb, fit2)
+df_RR2 <- crosspred_to_df(pred2)
+
+df_RR3 <- crosspred_to_df(pred2, pred_type = "lagged")
 
 # Plots with ggplot2
 df_RR1 |>
@@ -59,4 +69,11 @@ df_RR2 |>
   ggplot() +
   geom_line(aes(exposure, RR)) +
   geom_ribbon(aes(exposure, ymin = RR_low, ymax = RR_high), alpha = .2)
+
+df_RR3 |>
+  ggplot() +
+  geom_line(aes(exposure, RR)) +
+  geom_ribbon(aes(exposure, ymin = RR_low, ymax = RR_high), alpha = .2) +
+  facet_wrap(~ lag, labeller = as_labeller(\(x) paste("Lag", x)))
+
 }

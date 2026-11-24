@@ -5,12 +5,14 @@
 \alias{get_cen}
 \title{Get the MMT}
 \usage{
-get_MMT(crosspred)
+get_MMT(crosspred, limits = NULL)
 
-get_cen(crosspred)
+get_cen(crosspred, limits = NULL)
 }
 \arguments{
 \item{crosspred}{An object of class "\code{crosspred}" or "\code{crossreduce}".}
+
+\item{limits}{A numeric vector of length two that sets the lower and upper limit returned.}
 }
 \value{
 The numeric value of the exposure corresponding to the minimum value of the response.
@@ -40,7 +42,14 @@ fit <- glm(Ozone ~ cb, family = "quasipoisson", data = airquality)
 pred <- crosspred(cb, fit)
 plot(pred, "overall")
 
-# Prediction centering at the MMT
-pred_centered <- crosspred(cb, fit, cen = get_MMT(pred))
+# Prediction centered at the MMT
+pred_centered <- crosspred(cb, fit, cen = get_cen(pred))
+plot(pred_centered, "overall")
+
+# Determine lower and upper limits for the temperature range
+limits_temp <- quantile(airquality$Temp, c(.01, .99))
+
+# Prediction centering at the MMT, limited between the 1st and 99th temperature percentiles
+pred_centered <- crosspred(cb, fit, cen = get_cen(pred, limits = limits_temp))
 plot(pred_centered, "overall")
 }
